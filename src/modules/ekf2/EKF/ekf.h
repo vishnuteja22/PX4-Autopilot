@@ -762,10 +762,6 @@ private:
 
 	void controlHaglFakeFusion();
 
-	// reset the heading and magnetic field states using the declination and magnetometer measurements
-	// return true if successful
-	bool resetMagHeading();
-
 	// Return the magnetic declination in radians to be used by the alignment and fusion processing
 	float getMagDeclination();
 
@@ -892,7 +888,8 @@ private:
 
 	float getTerrainVPos() const { return isTerrainEstimateValid() ? _terrain_vpos : _last_on_ground_posD; }
 
-	bool magReset();
+	bool resetMagHeading(const Vector3f &mag);
+	bool resetMagStates(const Vector3f &mag);
 	bool haglYawResetReq();
 
 	void selectMagAuto();
