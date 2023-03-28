@@ -722,16 +722,15 @@ FixedwingPositionControl::set_control_mode_current(const hrt_abstime &now)
 				_control_mode_current = FW_POSCTRL_MODE_AUTO;
 				return;
 			}
+
+		} else if (_control_mode.flag_control_velocity_enabled) {
+			_control_mode_current = FW_POSCTRL_MODE_AUTO_VELOCITY;
+			return;
 		}
 	}
 
 	if ((_control_mode.flag_control_auto_enabled && _control_mode.flag_control_position_enabled)
 	    && _position_setpoint_current_valid) {
-
-		if (_control_mode.flag_control_offboard_enabled && !_control_mode.flag_control_position_enabled
-		    && _control_mode.flag_control_velocity_enabled) {
-			_control_mode_current = FW_POSCTRL_MODE_AUTO_VELOCITY;
-		}
 
 		if (_pos_sp_triplet.current.type == position_setpoint_s::SETPOINT_TYPE_TAKEOFF) {
 
