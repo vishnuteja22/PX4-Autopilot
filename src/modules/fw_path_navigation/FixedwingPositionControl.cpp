@@ -1166,7 +1166,7 @@ FixedwingPositionControl::control_auto_velocity(const float control_interval, co
 	_att_sp.yaw_body = _yaw;
 
 	tecs_update_pitch_throttle(control_interval,
-				   position_sp_alt,
+				   NAN,
 				   target_airspeed,
 				   radians(_param_fw_p_lim_min.get()),
 				   radians(_param_fw_p_lim_max.get()),
